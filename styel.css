@@ -1,0 +1,126 @@
+/* 1. Deep Plasma Animated Background & 3D Camera Setup */
+@keyframes plasmaBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    /* Animated deep tech gradient */
+    background: linear-gradient(-45deg, #050b14, #0a0a0a, #111a2e, #000000);
+    background-size: 400% 400%;
+    animation: plasmaBG 15s ease infinite;
+    
+    color: #ffffff;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Keeps the page clean during animations */
+    
+    /* THE SECRET TO 3D: This creates a "camera lens" 1000px away from the screen */
+    perspective: 1000px; 
+}
+
+/* 2. Liquid Hologram Title Entrance */
+@keyframes dropIn {
+    0% { opacity: 0; transform: translateY(-50px) scale(0.8); filter: blur(10px); }
+    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+@keyframes textShine {
+    to { background-position: 200% center; }
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    
+    /* Moving electric blue gradient text */
+    background: linear-gradient(120deg, #00f2fe, #4facfe, #00f2fe);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    animation: dropIn 1.5s cubic-bezier(0.16, 1, 0.3, 1), textShine 4s linear infinite;
+    text-shadow: 0 0 30px rgba(0, 242, 254, 0.3);
+}
+
+body > p {
+    font-size: 1.2rem;
+    color: #64748b;
+    margin-bottom: 4rem;
+    animation: dropIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; /* Delayed entrance */
+}
+
+/* 3. The 3D Floating Anti-Gravity Card */
+@keyframes float3D {
+    0% { 
+        transform: translateY(0px) rotateX(4deg) rotateY(4deg); 
+        box-shadow: -20px 30px 50px rgba(0, 0, 0, 0.8); 
+    }
+    50% { 
+        transform: translateY(-20px) rotateX(-4deg) rotateY(-4deg); 
+        box-shadow: 20px 50px 70px rgba(0, 242, 254, 0.15); 
+    }
+    100% { 
+        transform: translateY(0px) rotateX(4deg) rotateY(4deg); 
+        box-shadow: -20px 30px 50px rgba(0, 0, 0, 0.8); 
+    }
+}
+
+#crypto-container {
+    position: relative;
+    /* Dark smoked glass */
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 30px;
+    padding: 60px 80px;
+    min-width: 400px;
+    text-align: center;
+    
+    /* Enables inner elements (like the text) to pop out in 3D */
+    transform-style: preserve-3d; 
+    
+    /* The core 3D floating animation */
+    animation: float3D 8s ease-in-out infinite; 
+}
+
+/* Adds a subtle glowing inner ring to the card */
+#crypto-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 30px;
+    box-shadow: inset 0 0 20px rgba(0, 242, 254, 0.1);
+    pointer-events: none;
+}
+
+/* 4. Z-Axis Pop-out Data (The text physically projects out of the screen) */
+@keyframes dataPulse {
+    0% { transform: translateZ(60px) scale(1); text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+    50% { transform: translateZ(80px) scale(1.05); text-shadow: 0 10px 30px currentColor; }
+    100% { transform: translateZ(60px) scale(1); text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+}
+
+#crypto-container p {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0;
+    
+    /* translateZ pulls the text 60 pixels directly toward your eyeballs */
+    transform: translateZ(60px); 
+    
+    /* The text will slowly pulse in and out of the Z-axis */
+    animation: dataPulse 4s ease-in-out infinite;
+}
